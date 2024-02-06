@@ -1,0 +1,14 @@
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: UrubuDoPix
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  cache:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
