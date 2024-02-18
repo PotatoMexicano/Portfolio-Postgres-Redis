@@ -16,7 +16,7 @@ class Program
 
         services.AddSingleton<IProdutoService, ProdutoService>()
         .AddStackExchangeRedisCache(options => options.Configuration = "localhost:6379")
-        .AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost:5432;Database=postgres;Userid=postgres;Password=UrubuDoPix;"))
+        .AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost:5431;Database=postgres;Userid=postgres;Password=UrubuDoPix;"))
         .AddScoped<IRedisCache, RedisCache>()
         .BuildServiceProvider();
 

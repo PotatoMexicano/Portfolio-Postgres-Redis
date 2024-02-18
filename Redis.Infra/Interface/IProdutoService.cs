@@ -9,5 +9,7 @@ namespace Redis.Infra.Interface
         Task<List<Produto>> ListAll();
         Task<Produto?> ListFirst();
         Task<int> Count();
+
+        Task<Produto> Insert(string name);
     }
 }

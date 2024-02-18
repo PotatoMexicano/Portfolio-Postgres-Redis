@@ -1,13 +1,8 @@
-using System.Text;
-using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using Redis.Business.Models;
 using Redis.Infra.Context;
 using Redis.Infra.Interface;
-using Mono.TextTemplating;
 using Redis.Infra.Cache;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Redis.Infra.Service
 {
@@ -60,6 +55,19 @@ namespace Redis.Infra.Service
             Produto? produto = await _context.Produtos.FirstOrDefaultAsync();
             Thread.Sleep(TimeSpan.FromSeconds(5));
             return produto;
+        }
+
+        public async Task<Produto> Insert(string name)
+        {
+            Produto newProduto = new Produto()
+            { 
+                Name = name,
+            };
+
+            _context.Produtos.Add(newProduto);
+            await _context.SaveChangesAsync();
+
+            return newProduto;
         }
     }
 }
